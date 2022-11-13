@@ -1,23 +1,22 @@
 package com.springblog.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 	
 	@Id
@@ -34,43 +33,11 @@ public class User {
 	@NotEmpty
 	@Size(min = 4, max = 10 , message ="Password must be  min of 4 char and max 5 char!!")
 	private String password;
+
+	@Size(max = 400)
 	private String about;
-	
-	
-	
-	
-	public User() {
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getPassword() {
-		return password;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	public String getAbout() {
-		return about;
-	}
-	public void setAbout(String about) {
-		this.about = about;
-	}
+
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
+	private List<Post> posts = new ArrayList<>();
 
 }

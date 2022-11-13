@@ -3,13 +3,13 @@ package com.springblog.payload;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class UserDto {
 	
 	private int id;
@@ -25,6 +25,8 @@ public class UserDto {
 	@Size(min = 4, max = 10 , message ="Password must be  min of 4 char and max 5 char!!")
 	private String password;
 	private String about;
+
+	/*
 
 	public UserDto() {
 	}
@@ -58,5 +60,7 @@ public class UserDto {
 	public void setAbout(String about) {
 		this.about = about;
 	}
+
+	*/
 
 }
