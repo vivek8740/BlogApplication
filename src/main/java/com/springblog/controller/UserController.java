@@ -47,9 +47,9 @@ public class UserController {
 
 	// DELETE
 	@DeleteMapping("/{userId}")
-	public ResponseEntity<UserDto> deleteUser(@PathVariable Integer userId) {
+	public ResponseEntity<ResponseApi> deleteUser(@PathVariable Integer userId) {
 		service.deleteUser(userId);
-		return new ResponseEntity(new ResponseApi("Deleted Successfully", true), HttpStatus.OK);
+		return new ResponseEntity<ResponseApi>(new ResponseApi("Deleted Successfully", true), HttpStatus.OK);
 	}
 	
 	//GET -> get single User

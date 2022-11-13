@@ -4,7 +4,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.springblog.entity.Category;
 import com.springblog.entity.User;
+import com.springblog.payload.CategoryDto;
 import com.springblog.payload.UserDto;
 
 @Service
@@ -42,6 +44,14 @@ public class Helper {
 		return userDto;
 
 		*/
+	}
+
+	public CategoryDto categoryToCategoryDto(Category savedCategory) {
+		return mapper.map(savedCategory, CategoryDto.class);
+	}
+
+	public Category categoryDtoToCategory(CategoryDto categoryDto) {
+		return mapper.map(categoryDto, Category.class);
 	}
 
 }
