@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -58,22 +59,31 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> getAllPost() {
-        return null;
+        List<Post> posts = postRepo.findAll();
+        List<PostDto> postDtoList = posts.stream().map(p -> helper.PostToPostDto(p)).toList();
+        return postDtoList;
     }
 
     @Override
     public PostDto getPostById(Integer postId) {
-        return null;
+        Post post = postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("post","postId",postId));
+        return helper.PostToPostDto(post);
     }
 
     @Override
-    public List<PostDto> getPostByCategory() {
-        return null;
+    public List<PostDto> getPostByCategory(Integer categoryId) {
+        Category category = categoryRepo.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("category","categoryId",categoryId));
+        List<Post> posts = this.postRepo.findByCategory(category);
+        List<PostDto> postDtoList = posts.stream().map(e -> helper.PostToPostDto(e)).toList();
+        return postDtoList;
     }
 
     @Override
-    public List<PostDto> getPostByUser() {
-        return null;
+    public List<PostDto> getPostByUser(Integer userId) {
+
+        User user = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("user","userId",userId));
+        List<Post> post = this.postRepo.findByUser(user);
+        return post.stream().map(e-> helper.PostToPostDto(e)).toList();
     }
 
     @Override
