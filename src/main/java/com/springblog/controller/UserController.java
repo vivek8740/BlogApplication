@@ -1,6 +1,9 @@
 package com.springblog.controller;
 
 import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +24,8 @@ import com.springblog.service.UserService;
 @RequestMapping("/api/users")
 public class UserController {
 
+	Logger log = LoggerFactory.getLogger(UserController.class);
+
 	@Autowired
 	private UserService service;
 
@@ -34,6 +39,7 @@ public class UserController {
 	// GET -> Fetch All User
 	@GetMapping("/")
 	public ResponseEntity<List<UserDto>> findAllUsers() {
+
 		List<UserDto> users = service.getAllUsers();
 		return ResponseEntity.ok(users);
 	}

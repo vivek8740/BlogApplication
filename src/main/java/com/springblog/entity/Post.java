@@ -3,6 +3,8 @@
  */
 package com.springblog.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +24,7 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 public class Post {
 
 	@Id
@@ -37,14 +40,15 @@ public class Post {
 	@NotEmpty
 	private String imageName;
 
-	@NotEmpty
 	private Date postDate;
 
 	@ManyToOne
 	@JoinColumn(name="category_Id")
+	@JsonIgnore
 	private Category category;
 
 	@ManyToOne
+	@JsonIgnore
 	private User user;
 
 }

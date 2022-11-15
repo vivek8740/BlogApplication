@@ -1,5 +1,7 @@
 package com.springblog.utils;
 
+import com.springblog.entity.Post;
+import com.springblog.payload.PostDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,31 +21,11 @@ public class Helper {
 	//Helper Method to convert DTO to User
 	public User userDtoToUser(UserDto userDto) {
 		return mapper.map(userDto, User.class);
-		/*
-		User user = new User();
-		user.setId(userDto.getId());
-		user.setName(userDto.getName());
-		user.setEmail(userDto.getEmail());
-		user.setPassword(userDto.getPassword());
-		user.setAbout(userDto.getAbout());
-		return user;
-		*/
 	}
 	
 	//Helper Method to convert User to DTO
 	public UserDto userToUserDto(User user) {
 		return mapper.map(user, UserDto.class);
-
-		/*
-		UserDto userDto = new UserDto();
-		userDto.setId(user.getId());
-		userDto.setName(user.getName());
-		userDto.setEmail(user.getEmail());
-		userDto.setPassword(user.getPassword());
-		userDto.setAbout(user.getAbout());
-		return userDto;
-
-		*/
 	}
 
 	public CategoryDto categoryToCategoryDto(Category savedCategory) {
@@ -54,4 +36,11 @@ public class Helper {
 		return mapper.map(categoryDto, Category.class);
 	}
 
+	public Post PostDtoToPost(PostDto postDto){
+		return mapper.map(postDto, Post.class);
+	}
+
+	public PostDto PostToPostDto(Post post){
+		return mapper.map(post, PostDto.class);
+	}
 }

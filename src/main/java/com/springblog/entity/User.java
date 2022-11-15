@@ -1,6 +1,7 @@
 package com.springblog.entity;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 public class User {
 	
 	@Id
