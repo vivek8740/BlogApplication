@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -48,13 +47,20 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDto updatePost(PostDto postDto) {
-        return null;
+    public PostDto updatePost(PostDto postDto, Integer postId) {
+        Post post = this.postRepo.findById(postId).orElseThrow(()-> new ResourceNotFoundException("Post","postId",postId));
+        post.setPostTitle(postDto.getTitle());
+        post.setContent(postDto.getContent());
+        post.setImageName(postDto.getImageName());
+        Post updatePost = postRepo.save(post);
+
+        return helper.PostToPostDto(updatePost);
     }
 
     @Override
     public void deletePost(Integer postId) {
-
+        Post post = postRepo.findById(postId).orElseThrow(()-> new ResourceNotFoundException("Post","postId",postId));
+        postRepo.deleteById(post.getPostId());
     }
 
     @Override

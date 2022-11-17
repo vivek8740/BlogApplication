@@ -1,6 +1,5 @@
 package com.springblog.service;
 
-import com.springblog.entity.Post;
 import com.springblog.payload.PostDto;
 
 import java.util.List;
@@ -11,7 +10,7 @@ public interface PostService {
     PostDto createPost(PostDto postDto, Integer userId, Integer CategoryId);
 
     //Update post
-    PostDto updatePost(PostDto postDto);
+    PostDto updatePost(PostDto postDto, Integer postId);
 
     //Delete Post
     void deletePost(Integer postId);
