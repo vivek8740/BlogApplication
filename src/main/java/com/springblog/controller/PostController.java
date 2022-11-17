@@ -45,10 +45,22 @@ public class PostController {
         List<PostDto> postDtoList = postService.getAllPost();
         return new ResponseEntity<>(postDtoList,HttpStatus.OK);
     }
+    
 
     @GetMapping("/post/{postId}")
     public ResponseEntity<PostDto> getSinglePost(@PathVariable Integer postId){
         PostDto postDto = postService.getPostById(postId);
         return new ResponseEntity<>(postDto,HttpStatus.OK);
+    }
+
+    //GET
+    @GetMapping("/posts/pages")
+    public ResponseEntity<List<PostDto>> getPostsOnPageBasis(
+        @RequestParam(value = "pageNum",defaultValue = "1",required = false) Integer pageNum,
+        @RequestParam(value = "pageSize",defaultValue = "1",required = false) Integer pageSize
+        ){
+        List<PostDto> posts = this.postService.getPostsOnPageBasis(pageNum,pageSize);
+        return new ResponseEntity<>(posts,HttpStatus.OK
+        );
     }
 }

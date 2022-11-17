@@ -11,6 +11,9 @@ import com.springblog.repositories.UserRepo;
 import com.springblog.service.PostService;
 import com.springblog.utils.Helper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -96,4 +99,15 @@ public class PostServiceImpl implements PostService {
     public List<PostDto> searchPost(String keyword) {
         return null;
     }
+
+    @Override
+    public List<PostDto> getPostsOnPageBasis(Integer pageSize, Integer pageNo) {
+
+        Pageable p = PageRequest.of(pageNo, pageSize);
+        Page<Post> pagePost = postRepo.findAll(p);
+        List<Post> allPosts = pagePost.getContent();
+
+        return allPosts.stream().map( post -> helper.PostToPostDto(post)).toList();
+    }
+
 }

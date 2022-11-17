@@ -30,4 +30,9 @@ public interface PostService {
     //Search post
     List<PostDto> searchPost(String keyword);
 
+    //fetch posts on page basis
+    List<PostDto> getPostsOnPageBasis(Integer pageSize,Integer pageNo);
+
+
+
 }
