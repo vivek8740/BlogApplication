@@ -15,13 +15,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
-
 
     @Autowired
     private PostRepo postRepo;
@@ -45,7 +43,6 @@ public class PostServiceImpl implements PostService {
         newPost.setUser(user);
         newPost.setCategory(category);
         Post addedPost =  postRepo.save(newPost);
-
         return helper.PostToPostDto(addedPost);
     }
 
@@ -93,11 +90,6 @@ public class PostServiceImpl implements PostService {
         User user = this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("user","userId",userId));
         List<Post> post = this.postRepo.findByUser(user);
         return post.stream().map(e-> helper.PostToPostDto(e)).toList();
-    }
-
-    @Override
-    public List<PostDto> searchPost(String keyword) {
-        return null;
     }
 
     @Override

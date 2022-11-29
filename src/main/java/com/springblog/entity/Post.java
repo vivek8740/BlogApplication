@@ -4,15 +4,13 @@
 package com.springblog.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Date;
 
 /**
  * @author KKVIVEK
@@ -24,7 +22,6 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @Setter
 @NoArgsConstructor
-@Data
 public class Post {
 
 	@Id
